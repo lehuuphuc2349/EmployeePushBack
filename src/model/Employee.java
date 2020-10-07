@@ -12,7 +12,11 @@ import java.util.Scanner;
  * @author Phucdz
  */
 public class Employee {
-	enum gender {
+
+	public Employee(String string) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	public enum gender {
 		man,woman,other;
 	}
 	private String ID;
