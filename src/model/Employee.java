@@ -99,6 +99,11 @@ public class Employee {
 		System.out.println("Age: " + Age);
 		System.out.println("Address: " + Address);
 	}
+	public void InputID() throws Exception {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Input ID:");
+		ID = input.nextLine();
+	}
 //	PHUC DEP TRAI
 	
 }

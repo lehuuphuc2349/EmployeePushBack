@@ -64,4 +64,13 @@ public class Manager {
 		}
 		return 0;
 	}
+	public static int DeleteEmployee(Employee employee) throws Exception {
+		if(getEmployeeByID(employee.getID()) != null) {
+			Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever();
+			String state = "Delete From Employee Where ID=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(state);
+			preparedStatement.setString(1, employee.getID());
+			return preparedStatement.executeUpdate();
+		} return 0;
+	}
 }

@@ -53,7 +53,25 @@ public class EmployeeManagement {
 //		Employee employee = new Employee();
 //		
 //	}
-
+	public static void DeleteEmployee() throws Exception {
+		Employee employee = new Employee();
+		Scanner input = new Scanner(System.in);
+		employee.InputID();
+		do {
+			if(controller.Manager.getEmployeeByID(employee.getID()) == null) {
+				System.out.println("Input Again");
+				employee.setID(input.nextLine());
+			} else {
+				break;
+			}
+		}while(true);
+		int result = controller.Manager.DeleteEmployee(employee);
+		if(result == 0) {
+			System.out.println("ID Not EXIST");
+		} else {
+			System.out.println("Success..");
+		}
+	}
 	public static void ConvertGender(int gender) throws Exception {
 		switch (gender) {
 			case 1:
@@ -66,7 +84,7 @@ public class EmployeeManagement {
 				System.out.println(Gender.Other);
 				break;
 			default:
-				System.out.println("Error");
+				System.out.println(Gender.Other);
 				break;
 		}
 	}
@@ -92,6 +110,9 @@ public class EmployeeManagement {
 			switch (choose) {
 				case "1":
 					InsertEmployee();
+					break;
+				case "4":
+					DeleteEmployee();
 					break;
 				case "5":
 					ShowEmployee();
