@@ -19,7 +19,7 @@ import model.Employee;
  */
 public class Manager {
 	public static List<Employee> getAllEmployee() throws Exception{
-		List<Employee> employeeList = new ArrayList<>();
+		List<Employee> employeeList = new ArrayList<Employee>();
 		Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever();
 		String state = "Select * from Employee";
 		Statement statement = connection.createStatement();
@@ -40,7 +40,7 @@ public class Manager {
 		preparedStatement.setString(1, ID);
 		ResultSet result = preparedStatement.executeQuery();
 		while(result.next()) {
-			employee = new Employee(result.getString(1) + result.getString(2) + result.getInt(3) + result.getInt(4) + result.getString(5));
+			employee = new Employee(result.getString("ID") + result.getString("Name") + result.getInt("Gender") + result.getInt("Age") + result.getString("Address"));
 		}
 		result.close();
 		preparedStatement.close();

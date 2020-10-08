@@ -13,8 +13,11 @@ import java.util.Scanner;
  */
 public class Employee {
 
+	/**
+	 *
+	 * @param string
+	 */
 	public Employee(String string) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	public enum gender {
 		man,woman,other;
@@ -86,7 +89,7 @@ public class Employee {
 		System.out.println("Input Age:");
 		Age = input.nextInt();
 		System.out.println("Input Address:");
-		Address = input.nextLine();
+		Address = input.next();
 	}
 	public void ShowInfo() throws Exception{
 		System.out.println("ID: " + ID);
