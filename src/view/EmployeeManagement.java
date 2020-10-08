@@ -48,11 +48,7 @@ public class EmployeeManagement {
 			System.out.println("Success..!!");
 		}
 	}
-//	public static void ConvertGender() throws Exception {
-//		Scanner input = new Scanner(System.in);
-//		Employee employee = new Employee();
-//		
-//	}
+
 
 	public static void DeleteEmployee() throws Exception {
 		Employee employee = new Employee();
@@ -95,7 +91,7 @@ public class EmployeeManagement {
 		Employee employee = new Employee();
 		employee.InputID();
 		Employee result = controller.Manager.getEmployeeByID(employee.getID());
-		result.ShowInfo();
+		result.toString();
 	}
 
 	public static void ShowEmployee() throws Exception {

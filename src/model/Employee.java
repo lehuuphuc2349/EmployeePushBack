@@ -104,6 +104,10 @@ public class Employee {
 		System.out.println("Input ID:");
 		ID = input.next();
 	}
+	@Override
+	public String toString() {
+		return ID + "," +Name + "," + Gender + "," + Age + "," + Address;
+	}
 //	PHUC DEP TRAI
 	
 }
