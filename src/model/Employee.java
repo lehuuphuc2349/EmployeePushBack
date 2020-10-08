@@ -90,6 +90,7 @@ public class Employee {
 		Age = input.nextInt();
 		System.out.println("Input Address:");
 		Address = input.next();
+		System.out.println("");
 	}
 	public void ShowInfo() throws Exception{
 		System.out.println("ID: " + ID);

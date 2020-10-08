@@ -18,20 +18,22 @@ import model.Employee;
  * @author Phucdz
  */
 public class Manager {
-	public static List<Employee> getAllEmployee() throws Exception{
-		List<Employee> employeeList = new ArrayList<Employee>();
-		Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever();
-		String state = "Select * from Employee";
-		Statement statement = connection.createStatement();
-		ResultSet result = statement.executeQuery(state);
-		while(result.next()) {
-			employeeList.add(new Employee(result.getString(1) + result.getString(2) + result.getInt(3) + result.getInt(4) + result.getString(5)));
+
+	public static List<Employee> getAllEmployee() throws Exception {
+		List<Employee> employeeList = new ArrayList<>();
+		try (Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever()) {
+			String state = "Select * from Employee";
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(state);
+			while (result.next()) {
+				employeeList.add(new Employee(result.getString("ID"), result.getString("Name") , result.getInt("Gender") ,result.getInt("Age") , result.getString("Address")));
+			}
+			result.close();
+			statement.close();
 		}
-		result.close();
-		statement.close();
-		connection.close();
 		return employeeList;
 	}
+
 	public static Employee getEmployeeByID(String ID) throws Exception {
 		Employee employee = null;
 		Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever();
@@ -39,7 +41,7 @@ public class Manager {
 		PreparedStatement preparedStatement = connection.prepareStatement(state);
 		preparedStatement.setString(1, ID);
 		ResultSet result = preparedStatement.executeQuery();
-		while(result.next()) {
+		while (result.next()) {
 			employee = new Employee(result.getString("ID") + result.getString("Name") + result.getInt("Gender") + result.getInt("Age") + result.getString("Address"));
 		}
 		result.close();
@@ -47,8 +49,9 @@ public class Manager {
 		connection.close();
 		return employee;
 	}
+
 	public static int InsertEmployee(Employee employee) throws Exception {
-		if(getEmployeeByID(employee.getID()) == null) {
+		if (getEmployeeByID(employee.getID()) == null) {
 			Connection connection = controller.ConnectDatabaseMySQL.connectMySQLSever();
 			String state = "Insert into Employee Values(?,?,?,?,?)";
 			PreparedStatement preparedStatement = connection.prepareStatement(state);
