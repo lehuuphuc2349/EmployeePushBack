@@ -26,7 +26,7 @@ public class EmployeeManagement {
 		System.out.println("3. UPDATE EMPLOYEE");
 		System.out.println("4. DELETE EMPLOYEE");
 		System.out.println("5. SHOW ALL EMPLOYEE");
-		System.out.println("8. EXIT PROGRAM");
+		System.out.println("6. EXIT PROGRAM");
 	}
 
 	public static void InsertEmployee() throws Exception {
@@ -53,25 +53,27 @@ public class EmployeeManagement {
 //		Employee employee = new Employee();
 //		
 //	}
+
 	public static void DeleteEmployee() throws Exception {
 		Employee employee = new Employee();
 		Scanner input = new Scanner(System.in);
 		employee.InputID();
 		do {
-			if(controller.Manager.getEmployeeByID(employee.getID()) == null) {
+			if (controller.Manager.getEmployeeByID(employee.getID()) == null) {
 				System.out.println("Input Again");
 				employee.setID(input.nextLine());
 			} else {
 				break;
 			}
-		}while(true);
+		} while (true);
 		int result = controller.Manager.DeleteEmployee(employee);
-		if(result == 0) {
+		if (result == 0) {
 			System.out.println("ID Not EXIST");
 		} else {
 			System.out.println("Success..");
 		}
 	}
+
 	public static void ConvertGender(int gender) throws Exception {
 		switch (gender) {
 			case 1:
@@ -89,9 +91,17 @@ public class EmployeeManagement {
 		}
 	}
 
+	public static void SearchEmployee() throws Exception {	
+		Employee employee = new Employee();
+		employee.InputID();
+		Employee result = controller.Manager.getEmployeeByID(employee.getID());
+		result.ShowInfo();
+	}
+
 	public static void ShowEmployee() throws Exception {
 		List<Employee> listEmployees = controller.Manager.getAllEmployee();
 		for (int i = 0; i < listEmployees.size(); i++) {
+			System.out.println("Employee: " + (i+1));
 			System.out.println("ID: " + listEmployees.get(i).getID());
 			System.out.println("Name: " + listEmployees.get(i).getName());
 			ConvertGender(listEmployees.get(i).getGender());
@@ -111,13 +121,16 @@ public class EmployeeManagement {
 				case "1":
 					InsertEmployee();
 					break;
+				case "2":
+					SearchEmployee();
+					break;
 				case "4":
 					DeleteEmployee();
 					break;
 				case "5":
 					ShowEmployee();
 					break;
-				case "8":
+				case "6":
 					System.out.println("Thanks!!");
 					System.exit(0);
 					break;

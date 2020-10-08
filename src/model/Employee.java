@@ -92,17 +92,17 @@ public class Employee {
 		Address = input.next();
 		System.out.println("");
 	}
-	public void ShowInfo() throws Exception{
+	public void ShowInfo() {
 		System.out.println("ID: " + ID);
 		System.out.println("Name: " + Name);
 		System.out.println("Gender: " + Gender);
 		System.out.println("Age: " + Age);
 		System.out.println("Address: " + Address);
 	}
-	public void InputID() throws Exception {
+	public void InputID()  {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Input ID:");
-		ID = input.nextLine();
+		ID = input.next();
 	}
 //	PHUC DEP TRAI
 	
